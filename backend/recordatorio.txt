@@ -1,0 +1,4 @@
+Para crear una migración:
+
+php artisan make:migration create_reviews_table
+
