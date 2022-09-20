@@ -2,3 +2,74 @@ Para crear una migración:
 
 php artisan make:migration create_reviews_table
 
+Validaciones en app/Http/Requests
+
+El index solo mostrará los bootcamps.
+
+
+Endpoints (Están ubicados en ):
+
+Validaciones:
+
+Comandos en consola:
+
+    Crear un controlador:
+    php artisan make:controller CoursesController --api
+
+    Para ver todas las URL:
+    php artisan route:list
+
+Controladores:
+
+Crear una nueva ruta:
+
+La parte del id es una enrutado:
+
+    public function store(Request $request, $id)
+    {
+        //
+    }
+
+En la función se coloca:
+
+    El var_dump sirve para testear
+
+    public function store(Request $request, $id)
+    {
+        var_dump($request->all());
+        echo "<hr />";
+        var_dump($id);
+    }
+
+
+Rutas (routes/api.php):
+
+    Creación de una ruta para cursos, para poder
+    usar post man:
+
+Route::apiResource('courses' , CoursesController::class);
+
+    Ruta especifica para el create:
+Ruta especifica par acrearle un curso a un bootcamp:
+
+Route::post("courses/{idbootcamp}/create");
+
+
+Lo que quiero que ejecute la ruta:
+
+Route::post("courses/{idbootcamp}/create",
+    //Aquí va lo que quiero que ejecute está ruta
+        [ CoursesController::class , "store"]
+            );
+
+
+Dependencia necesaria (En este caso para cursos):
+use App\Http\Controllers\CoursesController;
+
+
+
+Postman:
+
+crear un curso a un bootcamp:
+
+URL:http://127.0.0.1:8000/api/courses/{idbootcamp}/create
